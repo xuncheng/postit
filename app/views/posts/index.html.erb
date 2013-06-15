@@ -1,24 +1,20 @@
-<h4>Listing posts</h4>
-
-<table>
-  <tr>
-    <th>Title</th>
-    <th>URL</th>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-  </tr>
-
 <% @posts.each do |post| %>
-  <tr>
-    <td><%= post.title %></td>
-    <td><%= post.url %></td>
-    <td><%= post.description %></td>
-    <td><%= link_to 'Show', post %></td>
-    <td><%= link_to 'Edit', edit_post_path(post) %></td>
-  </tr>
+  <div class="row">
+    <div class="span8 well">
+      <% post.categories.each do |category| %>
+        <span class="label">
+          <%= link_to category.name, '#' %>
+        </span>
+      <% end %>
+      <h4>
+        <%= link_to post.title, post.url, target: '_blank' %>
+      </h4>
+      <p><%= post.description %></p>
+      <p>
+      <span class="quiet">posted by</span>
+      <%= link_to post.user.username, '#' %>
+      <small><%= post.created_at %></small>
+      </p>
+    </div>
+  </div>
 <% end %>
-</table>
-
-<br />
-
