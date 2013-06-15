@@ -8,12 +8,17 @@
       float: none;
       margin-left: $indent + 10px;
     }
+    &.comment {
+      float: none;
+      width: auto;
+    }
   }
   textarea {
     overflow: auto;
     min-width: 400px;
     height: 160px;
   }
+
   #post {margin-left: $indent + 300px;}
   #category {margin-left: 30px;}
 }

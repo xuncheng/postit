@@ -7,6 +7,27 @@
 <h5>Cagegories</h5>
 <% @post.categories.each do |category| %>
   <span class="label">
-    <%= link_to category.name, '#' %>
+    <%= link_to category.name, category %>
   </span>
+<% end %>
+<hr />
+
+<%= simple_form_for @comment, url: post_comments_path(@post, @comment) do |f| %>
+  <%= f.input :body, label: 'Leave a comment', label_html: {class: 'comment'} %>
+  <%= f.submit class: "btn btn-primary" %>
+<% end %>
+<hr />
+
+<% @post.comments.each do |comment| %>
+  <% if !comment.id.nil? %>
+    <h5>Comments:</h5>
+    <div class="row">
+      <div class="well span8">
+        <em><%= comment.body %></em><br/>
+        <span class="quiet">by</span>
+        <%= link_to 'xuncheng', '#' %>
+        <small> at <%= comment.created_at %></small>
+      </div>
+    </div>
+  <% end %>
 <% end %>
