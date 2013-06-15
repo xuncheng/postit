@@ -1,0 +1,7 @@
+<h3>Create a new category</h3>
+<hr />
+
+<%= simple_form_for @category do |f| %>
+  <%= f.input :name %>
+  <%= f.submit class: "btn btn-success", id: "category" %>
+<% end %>
