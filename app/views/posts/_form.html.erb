@@ -1,0 +1,28 @@
+<%= form_for @post do |f| %>
+  <% if @post.errors.any? %>
+    <div class="errors_explanation">
+      <h2><%= pluralize(@post.errors.count, "erro") %> prohibited from this post being saved.</h2>
+      <ul>
+      <% @post.errors.full_messages do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br/>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :url %><br/>
+    <%= f.text_field :url %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br/>
+    <%= f.text_area :description, rows: 6 %>
+  </div>
+  <div class="action">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

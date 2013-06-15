@@ -1,1 +1,24 @@
-<h5>Welcome to the project template!</h5>
+<h4>Listing posts</h4>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>URL</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @posts.each do |post| %>
+  <tr>
+    <td><%= post.title %></td>
+    <td><%= post.url %></td>
+    <td><%= post.description %></td>
+    <td><%= link_to 'Show', post %></td>
+    <td><%= link_to 'Edit', edit_post_path(post) %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
