@@ -12,12 +12,9 @@
  *= require_tree .
  */
 
-@import 'bootstrap';
-@import "bootstrap-responsive";
-
-.container {
-  margin-left: 135px
-}
+@import "bootstrap";
+body { padding-top: 60px; }
+//@import "bootstrap-responsive";
 
 .navbar .nav > li > a.brand {
   padding-left: 0px;

@@ -1,0 +1,13 @@
+<h3>Sign up</h3>
+<hr />
+
+<div class="span6 offset3">
+  <%= simple_form_for @user, defaults: { input_html: {class: "signup"} } do |f| %>
+    <%= f.input :username, label: "Name" %>
+    <%= f.input :email %>
+    <%= f.input :password %>
+    <%= f.input :password_confirmation, label: "Confirmation" %>
+    <%= f.submit "Create account", class: "btn btn-primary" %>
+  <% end %>
+</div>
+

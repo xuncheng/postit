@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
   def show
     @category = Category.find(params[:id])
-    @posts = @category.posts.all
+    @posts = @category.posts
     @category_name = @category.name
 
     render 'posts/index'

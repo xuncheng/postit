@@ -22,7 +22,7 @@
       <p><%= post.description %></p>
       <p>
         <span class="quiet">posted by</span>
-          <%= link_to post.user.username, '#' %>
+          <%= link_to post.user.username, user_path(post.user) %>
         <small><%= post.created_at %></small>
       </p>
       <small>

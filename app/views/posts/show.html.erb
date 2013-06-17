@@ -18,14 +18,14 @@
 <% end %>
 <hr />
 
-<% @post.comments.each do |comment| %>
+<% @post.comments.reverse.each do |comment| %>
   <% if !comment.id.nil? %>
     <h5>Comments:</h5>
     <div class="row">
       <div class="well span8">
         <em><%= comment.body %></em><br/>
         <span class="quiet">by</span>
-        <%= link_to 'xuncheng', '#' %>
+        <%= link_to comment.user.username, user_path(comment.user) %>
         <small> at <%= comment.created_at %></small>
       </div>
     </div>

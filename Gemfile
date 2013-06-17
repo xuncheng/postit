@@ -6,6 +6,7 @@ gem 'json'
 gem 'bootstrap-sass', '~> 2.3.0.1'
 gem 'jquery-rails'
 gem 'simple_form'
+gem 'bcrypt-ruby'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -22,10 +23,11 @@ end
 group :development do
   gem 'sqlite3'
   gem 'pry'
+  gem 'pry-rails'
+  gem 'pry-remote'
   gem 'quiet_assets'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'pry-rails'
 end
 
 group :production do

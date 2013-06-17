@@ -3,5 +3,8 @@ Postit::Application.routes.draw do
   resources :posts, except: [:destroy] do
     resources :comments, only: [:create]
   end
+  resources :users, only: [:show, :create]
   resources :categories, only: [:show, :new, :create]
+
+  match '/signup', to: 'users#new'
 end
