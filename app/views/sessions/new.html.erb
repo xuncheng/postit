@@ -1,0 +1,14 @@
+<% provide(:title, 'Sign in') %>
+<h3>Sign in</h3>
+<hr />
+
+<%= simple_form_for(:session, url: sessions_path) do |f| %>
+  <%= f.input :email, input_html: {class: "input-xlarge"}, required: false %>
+  <%= f.input :password, input_html: {class: "input-xlarge"}, required: false %>
+  <%= f.submit "Sign in", class: "btn btn-primary" %>
+<% end %>
+
+<p>
+  New user? <%= link_to "Sign up now!", signup_path %>
+</p>
+

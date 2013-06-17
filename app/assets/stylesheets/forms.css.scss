@@ -21,7 +21,13 @@
     min-width: 400px;
     height: 160px;
   }
+  p.help-block {
+    clear: left;
+    margin-left: $indent + 20;
+    font-size: 12px;
+    color: #888;
+    display: block;
+  }
 
   #post {margin-left: $indent + 300px;}
-  #category {margin-left: 30px;}
 }

@@ -11,7 +11,8 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
 
     if @user.save
-      flash[:success] = "User was successfully created."
+      sign_in @user
+      flash[:success] = "Signed in successfully, welcome to the Postit!"
       redirect_to @user
     else
       render 'new'

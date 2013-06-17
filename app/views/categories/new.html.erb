@@ -1,7 +1,9 @@
+<% provide(:title, 'Category') %>
 <h3>Create a new category</h3>
 <hr />
 
 <%= simple_form_for @category do |f| %>
-  <%= f.input :name %>
-  <%= f.submit class: "btn btn-success", id: "category" %>
+  <%= render 'shared/error_messages', obj: @category %>
+  <%= f.input :name, input_html: {class: "input-xlarge"}, error: false %>
+  <%= f.submit class: "btn btn-primary" %>
 <% end %>
