@@ -9,8 +9,7 @@ class SessionsController < ApplicationController
       flash[:success] = "Signed in successfully, welcome to the Postit!"
       redirect_to user
     else
-      flash.now[:error] = "Invalid email/password combination"
-      render 'new'
+      render 'new', error: "Invalid email/password combination"
     end
   end
 

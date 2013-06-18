@@ -12,11 +12,14 @@
 <% end %>
 <hr />
 
-<%= simple_form_for @comment, url: post_comments_path(@post, @comment) do |f| %>
-  <%= f.input :body, label: 'Leave a comment', label_html: {class: 'comment'} %>
-  <%= f.submit class: "btn btn-primary" %>
+<% if signed_in? %>
+  <%= simple_form_for @comment, url: post_comments_path(@post, @comment) do |f| %>
+    <%= render 'shared/error_messages', obj: @comment %>
+    <%= f.input :body, label: 'Leave a comment', label_html: {class: 'comment'}, error: false %>
+    <%= f.submit class: "btn btn-primary" %>
+  <% end %>
+  <hr />
 <% end %>
-<hr />
 
 <% @post.comments.reverse.each do |comment| %>
   <% if !comment.id.nil? %>

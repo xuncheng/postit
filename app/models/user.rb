@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :remember_token
+  attr_accessible :username, :email, :password, :password_confirmation, :remember_token
   has_many :posts
   has_many :comments
 

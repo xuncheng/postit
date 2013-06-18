@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_filter :user_signed_in, except: [:index, :show]
+  
   def index
     @posts = Post.all
   end
@@ -18,7 +20,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(params[:post])
-    @post.user_id = '1'
+    @post.user = current_user
 
     if @post.save
       flash[:success] = 'Post was successfully created.'
