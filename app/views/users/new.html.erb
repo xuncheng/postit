@@ -6,7 +6,7 @@
   <%= render 'shared/error_messages', obj: @user %>
   <%= f.input :username, label: "Name" %>
   <%= f.input :email, placeholder: "user@example.com" %>
-  <%= f.input :password, required: true, hint: "Be at least 6 characters" %>
+  <%= f.input :password, hint: "Be at least 6 characters" %>
   <%= f.input :password_confirmation, label: "Confirmation" %>
   <%= f.submit "Create account", class: "btn btn-primary" %>
 <% end %>
