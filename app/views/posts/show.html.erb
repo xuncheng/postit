@@ -1,36 +1,48 @@
+<% provide(:title, @post.title) %>
 <p class="lead">
   <%= link_to @post.title, @post.url, target: "_blank" %>
 </p>
+<p>
+  <% @post.categories.each do |category| %>
+    <span class="label">
+      <%= link_to category.name, category %>
+    </span>
+  <% end %>
+</p>
 <hr />
+
 <p><%= @post.description %></p>
 <hr />
-<h5>Cagegories</h5>
-<% @post.categories.each do |category| %>
-  <span class="label">
-    <%= link_to category.name, category %>
-  </span>
-<% end %>
+
+<div id="replies" class="box-gray">
+  <div class="items">
+    <% @post.comments.each do |comment| %>
+      <% if !!comment.id %>
+        <div class="reply">
+          <div class="pull-left face">
+            <%= link_to gravatar_for(comment.user), user_path(comment.user) %>
+          </div>
+          <div class="infos">
+            <div class="info">
+              <%= link_to comment.user.username, user_path(comment.user) %>
+              <%= "#{time_ago_in_words(comment.created_at)} ago" %>
+            </div>
+            <div class="body"><%= comment.body %></div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
 <hr />
 
 <% if signed_in? %>
   <%= simple_form_for @comment, url: post_comments_path(@post, @comment) do |f| %>
-    <%= render 'shared/error_messages', obj: @comment %>
+    <%= render 'shared/error_messages', target: @comment %>
     <%= f.input :body, label: 'Leave a comment', label_html: {class: 'comment'}, error: false %>
-    <%= f.submit class: "btn btn-primary" %>
-  <% end %>
-  <hr />
-<% end %>
-
-<% @post.comments.reverse.each do |comment| %>
-  <% if !comment.id.nil? %>
-    <h5>Comments:</h5>
-    <div class="row">
-      <div class="well span8">
-        <em><%= comment.body %></em><br/>
-        <span class="quiet">by</span>
-        <%= link_to comment.user.username, user_path(comment.user) %>
-        <small> at <%= comment.created_at %></small>
-      </div>
+    <div class="form-actions">
+      <%= f.submit class: "btn btn-primary" %>
     </div>
   <% end %>
 <% end %>
+

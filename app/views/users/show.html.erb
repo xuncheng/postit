@@ -1,1 +1,11 @@
-<h3><%= @user.username %>, <%= @user.email %></h3>
+<% provide(:title, @user.username) %>
+
+<%= render 'menu' %>
+
+<div class="userinfo">
+  <div class="pull-left"><%= gravatar_for @user %></div>
+  <ul>
+    <li class="username"><%= @user.username %></li>
+    <li><strong><%= @user.email %></strong></li>
+  </ul>
+</div>

@@ -1,0 +1,29 @@
+<%= render 'menu' %>
+
+<div class="box-gray">
+  <table class="category-posts table">
+    <tbody>
+      <tr class="head">
+        <td class="category">Category</td>
+        <td class="title">Title</td>
+        <td class="comment">Reply</td>
+      </tr>
+      <% @posts.each do |post| %>
+        <tr class="<%= cycle('list_odd', 'list_even') %>">
+          <td>
+            <% post.categories.each do |category| %>
+              <%= link_to category.name, category_path(category) %>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to post.title, post_path(post.url) %>
+            <%= "#{time_ago_in_words(post.created_at)} ago" %>
+          </td>
+          <td class="comment">
+            <%= link_to pluralize(post.comments.count, "comment"), post_path(post) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

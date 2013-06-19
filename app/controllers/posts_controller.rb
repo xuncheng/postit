@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_filter :user_signed_in, except: [:index, :show]
-  
+
   def index
     @posts = Post.all
   end

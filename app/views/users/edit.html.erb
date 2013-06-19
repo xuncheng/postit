@@ -1,3 +1,17 @@
-<h3>Editing user</h3>
+<h3>Update your profile</h3>
 <hr />
 
+<%= simple_form_for @user, defaults: { input_html: {class: "input-xlarge"}, error: false } do |f| %>
+  <%= render 'shared/error_messages', target: @user %>
+  <%= f.input :username, label: "Name" %>
+  <%= f.input :email, disabled: true %>
+  <%= f.input :password, hint: "Be at least 6 characters" %>
+  <%= f.input :password_confirmation, label: "Confirmation" %>
+  <div class="profile-photo">
+    <%= gravatar_for(@user) %>
+    <p><strong><%= link_to "Change your avatar at Gravatar.com", "http://gravatar.com/" %>.</strong></p>
+  </div>
+  <div class="form-actions">
+    <%= f.submit "Update profile", class: "btn btn-primary" %>
+  </div>
+<% end %>

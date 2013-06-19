@@ -1,0 +1,15 @@
+<%= render 'menu' %>
+
+<div id="replies" class="box-gray">
+  <ul class="user-comments">
+    <% @comments.each do |comment| %>
+      <li>
+        <div class="title">
+          <%= link_to comment.post.title, comment.post.url %>
+          <span class="info"><%= "at #{time_ago_in_words(comment.created_at)} ago" %></span>
+        </div>
+        <div class="body"><p><%= comment.body %></p></div>
+      </li>
+    <% end %>
+  </ul>
+</div>

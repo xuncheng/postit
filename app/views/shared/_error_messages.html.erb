@@ -1,11 +1,11 @@
-<% if obj.errors.any? %>
+<% if target.errors.any? %>
   <div id="error_explanation">
     <div class="alert alert-error">
-      <!-- The form containers <%= pluralize(obj.errors.count, "error") %>. -->
+      <!-- The form containers <%= pluralize(target.errors.count, "error") %>. -->
       Correct the following errors and try again.
     </div>
     <ul>
-      <% obj.errors.full_messages.each do |msg| %>
+      <% target.errors.full_messages.each do |msg| %>
         <li>* <%= msg %></li>
       <% end %>
     </ul>

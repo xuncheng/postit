@@ -3,10 +3,12 @@
 <hr />
 
 <%= simple_form_for @user, defaults: { input_html: {class: "input-xlarge"}, error: false } do |f| %>
-  <%= render 'shared/error_messages', obj: @user %>
+  <%= render 'shared/error_messages', target: @user %>
   <%= f.input :username, label: "Name" %>
   <%= f.input :email, placeholder: "user@example.com" %>
   <%= f.input :password, hint: "Be at least 6 characters" %>
   <%= f.input :password_confirmation, label: "Confirmation" %>
-  <%= f.submit "Create account", class: "btn btn-primary" %>
+  <div class="form-actions">
+    <%= f.submit "Create account", class: "btn btn-primary" %>
+  </div>
 <% end %>

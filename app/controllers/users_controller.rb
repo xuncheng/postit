@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
+  before_filter :find_user, only: [:show, :posts, :comments]
   before_filter :user_signed_in, only: [:edit, :update]
   before_filter :correct_user, only: [:edit, :update]
 
   def show
-    @user = User.find(params[:id])
   end
 
   def new
@@ -36,9 +36,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def posts
+    @posts = @user.posts
+  end
+
+  def comments
+    @comments = @user.comments.order("created_at desc")
+  end
+
   private
+  def find_user
+    @user = User.find_by_username(params[:id])
+  end
+
   def correct_user
-    @user = User.find(params[:id])
-    redirect_to root_path unless current_user?(@user)
+    @user = User.find_by_username(params[:id])
+    redirect_to root_path, notice: 'Permission.' unless current_user?(@user)
   end
 end

@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  def to_param
+    username
+  end
   attr_accessible :username, :email, :password, :password_confirmation, :remember_token
   has_many :posts
   has_many :comments

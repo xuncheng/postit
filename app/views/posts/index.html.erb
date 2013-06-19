@@ -3,32 +3,39 @@
   <p class="lead">All Posts</p>
 <% else %>
   <p class="lead">
-  <%= link_to 'All Posts', posts_path %> »
+  <%= link_to 'All Posts', posts_path %> /
   <%= @category_name %>
   </p>
 <% end %>
 <hr />
 
-<% @posts.each do |post| %>
-  <div class="row">
-    <div class="span8 well">
-      <% post.categories.each do |category| %>
-        <span class="label">
-          <%= link_to category.name, category %>
-        </span>
-      <% end %>
-      <h4>
-        <%= link_to post.title, post.url, target: '_blank' %>
-      </h4>
-      <p><%= post.description %></p>
-      <p>
-        <span class="quiet">posted by</span>
-          <%= link_to post.user.username, user_path(post.user) %>
-        <small><%= post.created_at %></small>
-      </p>
-      <small>
-        <span><%= link_to pluralize(post.comments.size, "comment"), post %></span>
-      </small>
-    </div>
+<div class="box-gray">
+  <div class="posts">
+    <% @posts.each do |post| %>
+      <div class="post-line">
+        <div class="pull-left avatar">
+          <%= link_to gravatar_for(post.user), user_path(post.user) %>
+        </div>
+        <div class="right-info">
+          <div class="infos">
+            <div class="title">
+              <%= link_to post.title, post.url, target: '_blank' %>
+            </div>
+            <div class="description"><%= truncate(post.description, length: 120) %></div>
+            <div class="info">
+              <% post.categories.each do |category| %>
+                <%= link_to category.name, category_path(category), class: "node" %>
+              <% end %>
+              •
+              <%= link_to post.user.username, user_path(post.user) %>
+              <%= "published #{time_ago_in_words(post.created_at)} ago" %>
+            </div>
+            <div class="comment">
+              <%= link_to pluralize(post.comments.count, "comment"), post_path(post) %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>
