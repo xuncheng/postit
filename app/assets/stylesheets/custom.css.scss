@@ -124,6 +124,12 @@ body {
 /* Show */
 .lead {margin-bottom: 8px;}
 
+#replies .total {
+  padding: 6px 10px;
+  border-bottom: 1px solid #ddd;
+  color: #999;
+}
+
 #replies .reply {
   border-bottom: 1px solid #e3e3e3;
   padding: 8px 10px;

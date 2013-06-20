@@ -15,6 +15,7 @@
 <hr />
 
 <div id="replies" class="box-gray">
+  <div class="total"><%= pluralize(@post.comments.count, "comment") %></div>
   <div class="items">
     <% @post.comments.each do |comment| %>
       <% if !!comment.id %>
@@ -44,5 +45,13 @@
       <%= f.submit class: "btn btn-primary" %>
     </div>
   <% end %>
+<% else %>
+  <div id="comment" class="form" style="background-color: #f5f5f5;">
+    <div style="padding: 20px;">
+      If you want to leave a comment, you'll need to
+      <%= link_to 'login', signin_path, class: "btn btn-primary" %> or
+      <%= link_to 'register', signup_path, class: "btn btn-danger" %> to do that
+    </div>
+  </div>
 <% end %>
 
