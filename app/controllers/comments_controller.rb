@@ -11,4 +11,12 @@ class CommentsController < ApplicationController
       render 'posts/show'
     end
   end
+
+  def vote
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.find(params[:id])
+    @vote = Vote.create(vote: params[:vote], voteable: @comment, user_id: current_user.id)
+
+    redirect_to :back
+  end
 end

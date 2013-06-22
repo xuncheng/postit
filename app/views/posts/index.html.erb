@@ -13,6 +13,11 @@
   <div class="posts">
     <% @posts.each do |post| %>
       <div class="post-line">
+        <div class="vote">
+          <%= link_to "<i class='icon-arrow-up'></i>".html_safe, vote_post_path(post, vote: true), method: :post %><br />
+          <%= post.total_votes %> votes<br />
+          <%= link_to "<i class='icon-arrow-down'></i>".html_safe, vote_post_path(post, vote: false), method: :post %>
+        </div>
         <div class="pull-left avatar">
           <%= link_to gravatar_for(post.user), user_path(post.user) %>
         </div>

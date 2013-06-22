@@ -40,4 +40,12 @@ class PostsController < ApplicationController
       render 'edit'
     end
   end
+
+  def vote
+    @post = Post.find(params[:id])
+    @post.user = current_user
+    @vote = Vote.create(vote: params[:vote], voteable: @post, user_id: current_user.id)
+
+    redirect_to :back
+  end
 end

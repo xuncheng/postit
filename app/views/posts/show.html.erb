@@ -20,6 +20,11 @@
     <% @post.comments.each do |comment| %>
       <% if !!comment.id %>
         <div class="reply">
+          <div class="vote">
+            <%= link_to "<i class='icon-arrow-up'></i>".html_safe, vote_post_comment_path(@post, comment, vote: true), method: :post %><br />
+            <%= comment.total_votes %> votes<br />
+            <%= link_to "<i class='icon-arrow-down'></i>".html_safe, vote_post_comment_path(@post, comment, vote: false), method: :post %>
+          </div>
           <div class="pull-left face">
             <%= link_to gravatar_for(comment.user), user_path(comment.user) %>
           </div>

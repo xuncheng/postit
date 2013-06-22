@@ -34,6 +34,12 @@ body {
   }
 }
 
+.vote {
+  float: left;
+  margin: 20px 0 0 15px;
+  text-align: center;
+}
+
 .post-line {
   background: #fff;
   border-bottom: 1px solid #ddd;
@@ -44,7 +50,7 @@ body {
 .pull-left {float: left;}
 .avatar {
   width: 90px;
-  margin-left: 10px;
+  margin-left: 15px;
   img {
     margin-top: 5px;
     width: 80px;
@@ -52,7 +58,7 @@ body {
   }
 }
 
-.right-info {padding-left: 106px;}
+.right-info {padding-left: 166px;}
 .infos {
   min-height: 100px;
   padding-right: 54px;
@@ -137,15 +143,16 @@ body {
   .face {
     padding-right: 8px;
     width: 48px;
-    margin-left: 0;
+    margin-left: 10px;
+    margin-top: 3px;
     img {
       width: 48px;
       height: 48px;
     }
   }
   .infos {
-    min-height: 20px;
-    padding-left: 58px;
+    min-height: 60px;
+    padding-left: 118px;
   }
   .info {
     font-size: 12px;
@@ -158,6 +165,9 @@ body {
     font-size: 14px;
     text-overflow: ellipsis;
     word-wrap: break-word;
+  }
+  .vote {
+    margin: 0 0 0 10px;
   }
 }
 
