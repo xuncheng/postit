@@ -17,6 +17,12 @@ class CommentsController < ApplicationController
     @comment = @post.comments.find(params[:id])
     @vote = Vote.create(vote: params[:vote], voteable: @comment, user_id: current_user.id)
 
-    redirect_to :back
+    respond_to do |format|
+      format.html {
+        flash[:notice] = "Your vote was accepted."
+        redirect_to :back
+      }
+      format.js
+    end
   end
 end
