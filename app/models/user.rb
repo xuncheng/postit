@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
-  def to_param
-    username
-  end
+  extend FriendlyId
+  friendly_id :username, use: :slugged
+
   attr_accessible :username, :email, :password, :password_confirmation, :remember_token
   has_many :posts
   has_many :comments

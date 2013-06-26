@@ -1,13 +1,13 @@
 class PostsController < ApplicationController
   before_filter :user_signed_in, except: [:index, :show]
+  before_filter :find_post, only: [:show, :edit, :update, :vote]
 
   def index
     @posts = Post.all
   end
 
   def show
-    @post = Post.includes(:comments).find(params[:id])
-    @comment = @post.comments.build
+    @comment = Comment.new
   end
 
   def new
@@ -15,7 +15,6 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
   end
 
   def create
@@ -31,8 +30,6 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = Post.find(params[:id])
-
     if @post.update_attributes(params[:post])
       flash[:success] = 'Post was successfully updated.'
       redirect_to @post
@@ -42,7 +39,6 @@ class PostsController < ApplicationController
   end
 
   def vote
-    @post = Post.find(params[:id])
     @vote = Vote.create(vote: params[:vote], voteable: @post, user_id: current_user.id)
 
     respond_to do |format|
@@ -52,5 +48,10 @@ class PostsController < ApplicationController
       }
       format.js
     end
+  end
+
+  private
+  def find_post
+    @post = Post.find(params[:id])
   end
 end

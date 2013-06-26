@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   before_filter :user_signed_in, except: [:show]
 
   def show
-    @category = Category.find_by_name(params[:id])
+    @category = Category.find(params[:id])
     @posts = @category.posts
     @category_name = @category.name
 

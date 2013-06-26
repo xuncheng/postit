@@ -46,11 +46,11 @@ class UsersController < ApplicationController
 
   private
   def find_user
-    @user = User.find_by_username(params[:id])
+    @user = User.find(params[:id])
   end
 
   def correct_user
-    @user = User.find_by_username(params[:id])
+    @user = User.find(params[:id])
     redirect_to root_path, notice: 'Permission.' unless current_user?(@user)
   end
 end
