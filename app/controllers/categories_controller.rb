@@ -14,7 +14,8 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category = Category.new(params[:category])
+    binding.pry
+    @category = Category.new(category_params[:category])
 
     if @category.save
       flash[:success] = 'Category was successfully created.'
@@ -22,5 +23,10 @@ class CategoriesController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  private
+  def category_params
+    params.permit(category: [:name])
   end
 end

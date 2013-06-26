@@ -18,7 +18,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(params[:post])
+    @post = Post.new(post_params[:post])
     @post.user = current_user
 
     if @post.save
@@ -30,7 +30,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    if @post.update_attributes(params[:post])
+    if @post.update_attributes(post_params[:post])
       flash[:success] = 'Post was successfully updated.'
       redirect_to @post
     else
@@ -53,5 +53,9 @@ class PostsController < ApplicationController
   private
   def find_post
     @post = Post.find(params[:id])
+  end
+
+  def post_params
+    params.permit(post: [:title, :url, :description, :category_ids => []])
   end
 end

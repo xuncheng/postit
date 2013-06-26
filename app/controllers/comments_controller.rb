@@ -1,7 +1,8 @@
 class CommentsController < ApplicationController
   def create
+    binding.pry
     @post = Post.find(params[:post_id])
-    @comment = @post.comments.build(params[:comment])
+    @comment = @post.comments.build(comment_params[:comment])
     @comment.user = current_user
 
     if @comment.save
@@ -24,5 +25,10 @@ class CommentsController < ApplicationController
       }
       format.js
     end
+  end
+
+  private
+  def comment_params
+    params.permit(comment: [:body])
   end
 end

@@ -11,11 +11,10 @@ class UsersController < ApplicationController
   end
 
   def edit
-    #@user = User.find(params[:id])
   end
 
   def create
-    @user = User.new(params[:user])
+    @user = User.new(user_params[:user])
 
     if @user.save
       sign_in @user
@@ -27,7 +26,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update_attributes(params[:user])
+    if @user.update_attributes(user_params[:user])
       flash[:success] = "Profile successfully updated."
       sign_in @user
       redirect_to @user
@@ -52,5 +51,9 @@ class UsersController < ApplicationController
   def correct_user
     @user = User.find(params[:id])
     redirect_to root_path, notice: 'Permission.' unless current_user?(@user)
+  end
+
+  def user_params
+    params.permit(user: [:username, :email, :password, :password_confirmation])
   end
 end
