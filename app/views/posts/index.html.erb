@@ -14,9 +14,15 @@
     <% @posts.each do |post| %>
       <div class="post-line">
         <div class="vote">
-          <%= link_to "<i class='icon-arrow-up'></i>".html_safe, vote_post_path(post, vote: true), method: :post, remote: true %><br />
-          <span id='<%= "post_#{post.id}_votes" %>'><%= post.total_votes %> votes</span><br />
+          <% if signed_in? %>
+          <%= link_to "<i class='icon-arrow-up'></i>".html_safe, vote_post_path(post, vote: true), method: :post, remote: true %>
+          <% end %>
+          <br />
+          <span id='<%= "post_#{post.id}_votes" %>'><%= post.total_votes %> votes</span>
+          <br />
+          <% if signed_in? %>
           <%= link_to "<i class='icon-arrow-down'></i>".html_safe, vote_post_path(post, vote: false), method: :post, remote: true %>
+          <% end %>
         </div>
         <div class="pull-left avatar">
           <%= link_to gravatar_for(post.user), user_path(post.user) %>
