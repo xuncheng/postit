@@ -9,6 +9,7 @@ gem 'simple_form'
 gem 'bcrypt-ruby'
 gem 'friendly_id'
 gem 'strong_parameters'
+gem 'voteable-alpha', "~> 0.0.0"
 
 # Gems used only for assets and not required
 # in production environments by default.
